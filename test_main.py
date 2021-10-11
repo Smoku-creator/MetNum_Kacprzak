@@ -1,12 +1,12 @@
 # -*- coding: ISO-8859-2 -*-
 
-import pytest
 import main
 import pickle
 import math
 import numpy as np
+import pytest
 
-expected = pickle.load(open('expected','rb'))
+expected = pickle.load(open('expected.bin','rb'))
 
 results_cylinder_area = expected['cylinder_area']
 results_fib = expected['fib']

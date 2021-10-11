@@ -28,7 +28,7 @@ def fib(n:int):
     Returns:
     np.ndarray: wektor n pierwszych wyrazów ciągu Fibonnaciego.
     """
-    if n < 1:
+    if (n < 1) or (type(n) != int):
         return None
     elif n == 1:
         return np.array([1], dtype = int)
@@ -53,13 +53,14 @@ def matrix_calculations(a:float):
     touple: krotka zawierająca wyniki obliczeń 
     (Minv, Mt, Mdet) - opis parametrów w zadaniu 4.
     """
-    M = np.array([[a, 1, -a], [0, 1, 1], [-a, a, 1]])
-    Mdet = np.linalg.det(M)
-    Mt = np.transpose(M)
-    if Mdet == 0:
-        return None, Mt, Mdet
+    m = np.array([[a, 1, -a], [0, 1, 1], [-a, a, 1]])
+    mdet = np.linalg.det(m)
+    mt = np.transpose(m)
+    scr = float('NaN')
+    if mdet == 0:
+        return scr, mt, mdet
     else:
-        return np.linalg.inv(M), Mt, Mdet
+        return np.linalg.inv(m), mt, mdet
 
 def custom_matrix(m:int, n:int):
     """Funkcja zwraca macierz o wymiarze mxn zgodnie 
@@ -72,15 +73,15 @@ def custom_matrix(m:int, n:int):
     Returns:
     np.ndarray: macierz zgodna z opisem z zadania 7.
     """
-    if (type(m) != int) or (type(n) != int) or not (3 <= m <= 7) or not (3 <= n <= 7):
+    if (type(m) != int) or (type(n) != int) or (m < 0) or (n < 0):
         return None
-    mat = np.zeros((m, n), dtype = int)
+    mat = np.zeros((m, n))
     for i in range(0, m):
         for j in range(0, n):
             if i <= j:
-                mat[i][j] = j + 1
+                mat[i][j] = j
             else:
-                mat[i][j] = i + 1
+                mat[i][j] = i
     return mat
     
     
